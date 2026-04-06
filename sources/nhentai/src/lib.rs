@@ -1,40 +1,37 @@
 use aidoku::{
     error::Result,
     prelude::*,
-    std::{net::Request, net::HttpMethod, Vec, String},
-    Manga, MangaPageResult, Listing, Chapter, Page, Filter, FilterType,
+    std::{Vec, String},
+    Manga, MangaPageResult, Listing, Chapter, Page, Filter,
 };
 
-// 1. 获取漫画列表 (首页/最新)
 #[get_manga_list]
-fn get_manga_list(filters: Vec<Filter>, page: i32) -> Result<MangaPageResult> {
-    // 这里演示访问 nhentai 的 API
-    let url = format!("https://nhentai.net/api/galleries/all?page={}", page);
-    let json = Request::new(url, HttpMethod::Get).json()?;
-    
-    // 逻辑：解析 JSON 并返回漫画列表
-    // (由于是演示，这里省略复杂的解析细节，实际使用时需要按字段提取)
-    todo!()
+fn get_manga_list(_filters: Vec<Filter>, _page: i32) -> Result<MangaPageResult> {
+    Ok(MangaPageResult {
+        manga: Vec::new(),
+        has_more: false,
+    })
 }
 
-// 2. 获取漫画详情
 #[get_manga_details]
-fn get_manga_details(id: String) -> Result<Manga> {
-    let url = format!("https://nhentai.net/api/gallery/{}", id);
-    let json = Request::new(url, HttpMethod::Get).json()?;
-    
-    // 逻辑：提取标题、封面、作者等
-    todo!()
+fn get_manga_details(_id: String) -> Result<Manga> {
+    Err(aidoku::error::AidokuError { t: aidoku::error::AidokuErrorKind::Unimplemented })
 }
 
-// 3. 获取章节列表 (nhentai 通常只有一章)
 #[get_chapter_list]
-fn get_chapter_list(id: String) -> Result<Vec<Chapter>> {
-    todo!()
+fn get_chapter_list(_id: String) -> Result<Vec<Chapter>> {
+    Ok(Vec::new())
 }
 
-// 4. 获取图片列表 (真正的看图环节)
 #[get_page_list]
-fn get_page_list(manga_id: String, chapter_id: String) -> Result<Vec<Page>> {
-    todo!()
+fn get_page_list(_manga_id: String, _chapter_id: String) -> Result<Vec<Page>> {
+    Ok(Vec::new())
+}
+
+#[modify_image_request]
+fn modify_image_request(_request: aidoku::std::net::Request) {}
+
+#[handle_url]
+fn handle_url(_url: String) -> Result<DeepLink> {
+    Err(aidoku::error::AidokuError { t: aidoku::error::AidokuErrorKind::Unimplemented })
 }
