@@ -1,0 +1,10 @@
+{
+	"id": "zh.nhentai",
+	"name": "nhentai (Vronz)",
+	"desc": "nhentai 演示图源",
+	"website": "https://nhentai.net",
+	"version": 1,
+	"libVersion": 1,
+	"language": "zh",
+	"nsfw": 2
+}
